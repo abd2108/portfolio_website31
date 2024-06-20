@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } 
+
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        /* Body Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            margin: 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ffd700; /* Gold color */
+        }
+
+        header.scrolled {
+            background: rgba(52, 152, 219, 0.9);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 150px 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db), url('images/hero-bg.jpg') no-repeat center center/cover;
+            color: #fff;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        #hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        #hero p {
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 1.5s ease-in-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 80px auto;
+            background: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            color: #333;
+        }
+
+        section p {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Project Styles */
+        #projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .project {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .project img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .project p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skills Section */
+        #skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;  
+            left: 20px; 
+
+            
+        }
+
+        .skill {
+            background: #f9f9f9;
+            padding: 25px; 
+            margin: 30px;
+            width: 256px;
+            text-align: center;
+            border-radius: 20px; 
+            position: relative ;
+            left: -60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .skill h4 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Experience Section */
+        #experience {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .experience-item {
+            background: #f9f9f9;
+            padding: 20px;
+            width: 80%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .experience-item h4 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: #667eea;
+        }
+
+        .experience-item p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Testimonial Section */
+        #testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .testimonial {
+            background: #f9f9f9;
+            padding: 20px;
+            width: 350px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+       
+
+      
+
+        .testimonial p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .testimonial h4 {
+            font-size: 20px;
+            color: #4b79a1;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg,#667eea, #764ba2);
+            color: blue;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #contact a {
+            color: #ffd700; /* Gold color */
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+            color: #f5f5f5; /* Lighter gold on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 200px;
+                display: none;
+            }
+
+            header nav ul li {
+                margin: 20px 0;
+            }
+
+            header nav ul li a {
+                font-size: 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+                cursor: pointer;
+                color: #fff;
+            }
+
+            .active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #hero {
+                padding: 100px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+             
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hi, I'm Abdullah Raza. I create awesome web experiences.</p>
+    </section>
+
+    <section id="about" class="fade-in">
+        <h2>ABOUT ME </h2>
+        <p> I am a student of IIT(BHU) VARANASI, I have a keen interest in Computer Science and Web Development.
+            I have a deep interest in problem solving.
+    <br>I try to solve Data Structures and Algorithms problems on a regular basis 
+            with the help of some online proffesional websites ex - Leetcode , codeforces .
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2 style="position: relative; left: 42%; top: -45px; margin-bottom: 10px;">Skills</h2>
+        <div class="skill">
+            <i class="fab fa-html5"></i>
+            <h4>HTML5</h4>
+        </div>
+        <div class="skill">
+            <i class="fab fa-css3-alt"></i>
+            <h4>CSS3</h4>
+        </div>
+        <div class="skill">
+            <i class="fab fa-js"></i>
+            <h4>JavaScript</h4>
+        </div > 
+        <div style="position: relative; left:00px" class="skill">
+            <i class="fab fa-c"></i>
+            <h4>C</h4>
+        </div> 
+
+    <div style="position: relative; left: 20px;" class="skill">
+        <i class="fab fa-golang"></i>
+        <h4>GO</h4>
+    </div>
+        <!-- Add more skills as needed -->
+    </section>
+
+
+    <section id="projects" class="slide-in">
+        <h2>Projects</h2>
+        <div class="project">
+            <img src="https://media.istockphoto.com/id/1695688640/photo/luxury-home-gym-in-a-spacious-detached-house.jpg?s=1024x1024&w=is&k=20&c=HqGpT0TSK-XkBtAzBFpxnddYRmncsLkA-DeKUVSQ-fs=" alt="hiiiiiiiii>">
+            <h3>Project 1</h3>
+            <p>I have created a Gym website as a project given in the course of SWC hackstack IITG</p> 
+        \
+        </div>
+        <div class="project">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVl9x1-f02J9ihMvLyrx3QFeO6_m2lwFmPg&s" alt="Project 2">
+            <h3>Project 2</h3>
+            <p>I have created a GUESS GAME using Javascript.</p> 
+            <a  target="_blank" href="https://abd2108.github.io/guess-game/">Game Link</a>
+        </div>
+      
+    </section>
+
+  
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="abdullahraza212108@gmail.com">Mail Id</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></p>
+    </section>
+
+    <div>
+        <p>  2024 Abdullah Raza. All rights reserved.</p>
+    </div>
+        
+
+
+    <script>
+     
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
+        const faders = document.querySelectorAll('.fade-in');
+        const sliders = document.querySelectorAll('.slide-in');
+
+        const appearOptions = {
+            threshold: 0,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        sliders.forEach(slider => {
+            appearOnScroll.observe(slider);
+        });
+
+
+        function toggleMenu() {
+            const nav = document.querySelector('header nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
